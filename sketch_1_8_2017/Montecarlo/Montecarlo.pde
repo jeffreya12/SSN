@@ -1,7 +1,7 @@
 float[] vals;
 
 void setup( ) {
-  size(200, 150);
+  size(400, 300);
   //fullScreen();
   background(0);
   stroke(255);
@@ -23,7 +23,7 @@ float monteCarlo(){
     //Distribución lineal
     //float probabilidad = r1 ; //Lineal
     //float probabilidad = r1 * r1; //Exponencial
-    //float probabilidad = log(r1 * 2.7182 + 1); //Logaritmica
+    float probabilidad = log(r1 * 2.7182 + 1); //Logaritmica
     //float probabilidad = 0.1 / r1; //Hiperbolica
     float r2 =  random(1);
 
