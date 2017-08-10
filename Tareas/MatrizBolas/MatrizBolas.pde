@@ -1,43 +1,70 @@
 float increment = 0.01;
-// The noise function's 3rd argument, a global variable that increments once per cycle
+
 float zoff = 0.0;
-// We will increment zoff differently than xoff and yoff
+
 float zincrement = 0.02;
 
+float r, g, b;
+
 void setup() {
-  size(640, 360, P3D);
-  frameRate(30);
+  size(650, 350, P2D);
+  //fullScreen();
+  noStroke();
+  //frameRate(300);
 }
 
 void draw() {
 
-  // Optional: adjust noise detail here
-  // noiseDetail(8,0.65f);
+  background(0);
 
-  loadPixels();
+  float xoff = 0.0;
 
-  float xoff = 0.0; // Start xoff at 0
+  for (int x = 10; x < width; x += 10) {
 
-  // For every x,y coordinate in a 2D space, calculate a noise value and produce a brightness value
-  for (int x = 0; x < width; x++) {
-    xoff += increment;   // Increment xoff
-    float yoff = 0.0;   // For every xoff, start yoff at 0
-    for (int y = 0; y < height; y++) {
-      yoff += increment; // Increment yoff
+    xoff += increment;
 
-      // Calculate noise and scale by 255
-      float bright = noise(xoff,yoff,zoff)*255;
+    float yoff = 0.0;
 
-      // Try using this line instead
-      //float bright = random(0,255);
+    for (int y = 10; y < height; y += 10) {
 
-      // Set each pixel onscreen to a grayscale value
-      pixels[x+y*width] = color(bright,bright,bright);
+      yoff += increment;
+
+      r = randomGaussian()*10 + 244;
+      g = randomGaussian()*10 + 66;
+      b = randomGaussian()*10 + 101;
+
+      // r = monteCarlo()*50 + 244;
+      // g = monteCarlo()*50 + 66;
+      // b = monteCarlo()*50 + 101;
+
+      float circleSize = noise(xoff,yoff,zoff)*20;
+      //float circleSize = map(noise(xoff,yoff,zoff), 0, 1, 0, 10);
+      float newPosX = map(noise(xoff,yoff,zoff), 0, 1, x - 50, x + 50);
+      float newPosY = map(noise(xoff,yoff,zoff), 0, 1, y - 50, y + 50);
+
+      fill(r, g, b);
+
+      ellipse(newPosX, newPosY, circleSize, circleSize);
+
+    }
+
+  }
+
+  zoff += zincrement;
+
+}
+
+float monteCarlo(){
+  while(true){
+    float r1 = random(1);
+    float probabilidad = r1 ; //Lineal
+    //float probabilidad = r1 * r1; //Exponencial
+    //float probabilidad = log(r1 * 2.7182 + 1); //Logaritmica
+    //float probabilidad = 0.1 / r1; //Hiperbolica
+    float r2 =  random(1);
+
+    if(r2 < probabilidad){
+      return r1;
     }
   }
-  updatePixels();
-
-  zoff += zincrement; // Increment zoff
-
-
 }
