@@ -2,7 +2,7 @@ Bola b;
 
 void setup(){
   size(800,600);
-  b = new Bola(width/2,height/2,10,0);  
+  b = new Bola(width/2,height/2,10,0);
 }
 
 void draw(){
