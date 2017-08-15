@@ -1,11 +1,9 @@
 class Bola{
-  float x;
-  float y;
-  float velx;
-  float vely;
   PVector pos;
   PVector vel;
   PVector acc;
+
+  int r, g, b;
 
   Bola(float x,float y, float velx, float vely){
 
@@ -13,27 +11,33 @@ class Bola{
     vel = new PVector(velx,vely);
 
     acc = new PVector(0.02,0.001);
-    //acc = PVector.random2D();
+
     acc.limit(0.1);
+
+    r = int(random(256));
+    g = int(random(256));
+    b = int(random(256));
 
   }
   void actualizar(){
 
-    vel.add(acc);
-    vel.limit(5);
     pos.add(vel);
+    vel.add(acc);
     acc.mult(0);
-    pos.x = pos.x %width;
-    pos.y = pos.y %height;
 
-    if(mousePressed){
-      PVector mouse = new PVector(mouseX,mouseY);
-      mouse.sub(pos);
-      println(mouse);
-      mouse.setMag(1.5);
-      println(mouse);
-      aplicarFuerza(mouse);
+    vel.limit(5);
+
+    if(pos.x - 10 < 0 || pos.x + 10 > width){
+      vel.x *= -0.8;
     }
+
+    if(pos.y - 10 < 0){
+      vel.y *= -0.8;
+    }
+
+    pos.x = constrain(pos.x, 10, width - 10);
+    pos.y = constrain(pos.y, 10, height - 10);
+
   }
 
   void aplicarFuerza(PVector fuerza){
@@ -42,7 +46,7 @@ class Bola{
 
   void dibujar(){
     noStroke();
-    fill(255);
+    fill(r, g, b);
     ellipse(pos.x,pos.y,20,20);
   }
 
