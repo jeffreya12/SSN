@@ -12,7 +12,7 @@ class Bola{
 
     acc = new PVector(0.02,0.001);
 
-    acc.limit(0.1);
+    acc.limit(1);
 
     r = int(random(256));
     g = int(random(256));
