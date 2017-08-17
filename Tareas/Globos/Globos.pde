@@ -24,7 +24,7 @@ void setup(){
   }
 
   empuje = new PVector(0, -0.01);
-  vientoIzq = new PVector(-0.04, 0);
+  vientoIzq = new PVector(-0.03, 0);
 
   fondo = loadImage("fondo.jpg");
 }
@@ -35,10 +35,10 @@ void draw(){
 
   float yoff = 0;
 
-  PVector vientoDer = new PVector(map(noise(xoff, yoff), 0, 1, 0, 0.05), 0);
-
   for (int i = 0; i < cantidadDeBolas; i++){
 
+    PVector vientoDer = new PVector(map(noise(xoff, yoff), 0, 1, 0, 0.05), 0);
+    
     bolas[i].aplicarFuerza(empuje);
     bolas[i].aplicarFuerza(vientoDer);
 
