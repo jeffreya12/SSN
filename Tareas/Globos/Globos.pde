@@ -10,7 +10,7 @@ PImage fondo;
 
 void setup(){
 
-  size(800, 600, P3D);;
+  size(800, 600, P3D);
 
   cantidadDeBolas = 100;
 
@@ -20,6 +20,7 @@ void setup(){
 
   for (int i = 0; i < cantidadDeBolas; i++){
     vel = PVector.random2D();
+    vel.setMag(map(randomGaussian(), -1, 1, 0, 0.5));
     bolas[i] = new Bola(randomGaussian()*100 + width/2, randomGaussian()*10 + height/2, vel.x, vel.y);
   }
 
@@ -38,7 +39,7 @@ void draw(){
   for (int i = 0; i < cantidadDeBolas; i++){
 
     PVector vientoDer = new PVector(map(noise(xoff, yoff), 0, 1, 0, 0.05), 0);
-    
+
     bolas[i].aplicarFuerza(empuje);
     bolas[i].aplicarFuerza(vientoDer);
 
