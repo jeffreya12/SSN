@@ -8,9 +8,9 @@ class Bola{
 
     pos = new PVector(x,y);
     vel = new PVector(velx,vely);
-    acc = new PVector(0.02,0.001);
+    acc = new PVector(0,0);
 
-    masa = randomGaussian() * 10 + 20;
+    masa = 20;
 
   }
 
@@ -18,12 +18,12 @@ class Bola{
 
     pos = new PVector(x,y);
     vel = PVector.random2D();
-    vel.setMag(10);
-    acc = new PVector(0.02,0.001);
+    acc = new PVector(0,0);
 
-    masa = map(randomGaussian(), -1, 1, 0, 50);
+    masa = 20;
 
   }
+
   void actualizar(){
 
     pos.add(vel);

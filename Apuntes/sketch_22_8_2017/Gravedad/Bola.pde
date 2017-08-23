@@ -8,9 +8,9 @@ class Bola{
 
     pos = new PVector(x,y);
     vel = new PVector(velx,vely);
-    acc = new PVector(0.02,0.001);
+    acc = new PVector(0,0);
 
-    masa = randomGaussian() * 10 + 20;
+    masa = random(20);
 
   }
 
@@ -18,17 +18,18 @@ class Bola{
 
     pos = new PVector(x,y);
     vel = PVector.random2D();
-    vel.setMag(10);
-    acc = new PVector(0.02,0.001);
+    acc = new PVector(0, 0);
 
-    masa = map(randomGaussian(), -1, 1, 0, 50);
+    masa = random(20);
 
   }
+
   void actualizar(){
 
     pos.add(vel);
     vel.add(acc);
     acc.mult(0);
+    vel.limit(4);
 
     if(pos.x - masa/2 < 0 || pos.x + masa/2 > width){
       vel.x *= -1;
@@ -49,7 +50,7 @@ class Bola{
   }
 
   void dibujar(){
-    fill(200, 90, 90, 80);
+    fill(255);
     noStroke();
     ellipse(pos.x,pos.y,masa,masa);
   }
