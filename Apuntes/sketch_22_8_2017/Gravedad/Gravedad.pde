@@ -2,9 +2,9 @@ ArrayList<Bola> bolas;
 
 void setup(){
 	size(800, 600);
-	
+
 	bolas = new ArrayList();
-	
+
 	for(int i = 0; i < 100; i++){
 		bolas.add(new Bola(random(width), random(height), 0, 0));
 	}
