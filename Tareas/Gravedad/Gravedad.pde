@@ -4,6 +4,7 @@ float G;
 
 void setup(){
 	size(800, 600, P2D);
+	background(0);
 	bolas = new ArrayList();
 	for(int i = 0; i < 300; i++){
 		bolas.add(new Bola(random(50, width - 50), random(50, height - 50), 0, 0));
@@ -13,7 +14,8 @@ void setup(){
 }
 
 void draw(){
-	background(0);
+	fill(0, 25);
+	rect(0, 0, width, height);
 	for (Bola b : bolas){
 		for (Bola b2 : bolas) {
 			if(b != b2){
