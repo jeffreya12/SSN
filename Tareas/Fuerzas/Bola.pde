@@ -39,5 +39,4 @@ class Bola{
     stroke(255);
     ellipse(pos.x,pos.y,masa,masa);
   }
-
 }

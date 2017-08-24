@@ -25,16 +25,16 @@ void draw( ) {
     PVector paredDerecha = new PVector(width - masa / 2, b.pos.y);
 
     if(b.calcularDistancia(paredArriba) < height / 2){
-      b.aplicarFuerza(new PVector(0, map(b.calcularDistancia(paredArriba), 0, height/2, 10, 0)));
+      b.aplicarFuerza(new PVector(0, map(b.calcularDistancia(paredArriba), 0, height/2, 5, 0)));
     }
     if(b.calcularDistancia(paredIzquierda) < width / 2){
-      b.aplicarFuerza(new PVector(map(b.calcularDistancia(paredIzquierda), 0, width/2, 10, 0), 0));
+      b.aplicarFuerza(new PVector(map(b.calcularDistancia(paredIzquierda), 0, width/2, 5, 0), 0));
     }
     if(b.calcularDistancia(paredAbajo) < height / 2){
-      b.aplicarFuerza(new PVector(0, map(b.calcularDistancia(paredAbajo), 0, height/2, -10, 0)));
+      b.aplicarFuerza(new PVector(0, map(b.calcularDistancia(paredAbajo), 0, height/2, -5, 0)));
     }
     if(b.calcularDistancia(paredDerecha) < width / 2){
-      b.aplicarFuerza(new PVector(map(b.calcularDistancia(paredDerecha), 0, width/2, -10, 0), 0));
+      b.aplicarFuerza(new PVector(map(b.calcularDistancia(paredDerecha), 0, width/2, -5, 0), 0));
     }
 
     b.actualizar();
