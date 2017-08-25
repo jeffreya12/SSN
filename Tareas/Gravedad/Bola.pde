@@ -16,6 +16,7 @@ class Bola{
   void actualizar(){
     pos.add(vel);
     vel.add(acc);
+    vel.limit(5);
     acc.mult(0);
   }
 
