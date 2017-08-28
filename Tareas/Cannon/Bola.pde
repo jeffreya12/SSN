@@ -10,7 +10,7 @@ class Bola{
     vel = new PVector(velx,vely);
     acc = new PVector(0,0);
 
-    masa = random(20);
+    masa = randomGaussian() * 1 + 10;
 
   }
 
@@ -20,7 +20,7 @@ class Bola{
     vel = PVector.random2D();
     acc = new PVector(0,0);
 
-    masa = random(50);
+    masa = randomGaussian() * 10 + 20;
 
   }
 
@@ -30,16 +30,15 @@ class Bola{
     vel.add(acc);
     acc.mult(0);
 
-    if(pos.x - masa/2 < 0 || pos.x + masa/2 > width){
-      vel.x *= -1;
-    }
+    // if(pos.x - masa/2 < 0 || pos.x + masa/2 > width){
+    //   vel.x *= -1;
+    // }
 
-    if(pos.y - masa/2 < 0 || pos.y + masa/2 > height){
+    if(pos.y > height){
       vel.y *= -1;
     }
 
-    pos.x = constrain(pos.x, masa/2, width - masa/2);
-    pos.y = constrain(pos.y, masa/2, height - masa/2);
+    // pos.x = constrain(pos.x, masa/2, width - masa/2);
 
   }
 
