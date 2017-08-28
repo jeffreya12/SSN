@@ -15,7 +15,7 @@ void draw(){
 	diff.setMag(40);
 
 	if (mousePressed){
-		bolas.add(new Cuadro(width/2, height/2, 0, 0));
+		bolas.add(new Cuadro(width/2 + diff.x, height/2 + diff.y, 0, 0));
 		bolas.get(bolas.size() - 1).aplicarFuerza(new PVector(diff.x, diff.y));
 	}
 

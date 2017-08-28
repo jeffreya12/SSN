@@ -30,16 +30,9 @@ class Bola{
     vel.add(acc);
     acc.mult(0);
 
-    // if(pos.x - masa/2 < 0 || pos.x + masa/2 > width){
-    //   vel.x *= -1;
-    // }
-
     if(pos.y > height){
       vel.y *= -1;
     }
-
-    // pos.x = constrain(pos.x, masa/2, width - masa/2);
-
   }
 
   void aplicarFuerza(PVector fuerza){
@@ -52,5 +45,4 @@ class Bola{
     noStroke();
     ellipse(pos.x,pos.y,masa,masa);
   }
-
 }
