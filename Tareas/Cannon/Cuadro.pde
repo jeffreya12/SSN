@@ -7,7 +7,7 @@ class Cuadro extends Bola {
   Cuadro(float x,float y, float velx, float vely){
     super(x, y, velx, vely);
     ang = random(2*PI);
-    velAng = random(-1, 1);
+    velAng = map(randomGaussian(), -1, 1, -0.05, 0.05);
     accAng = 0;
 
     r = int(random(256));
