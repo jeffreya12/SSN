@@ -1,9 +1,6 @@
 import controlP5.*;
 
 ArrayList<IAgent> agents;
-//Particle p1;
-//Particle p2;
-//Spring s;
 float margin = 20;
 float n = 15;
 float mass = 2;
@@ -18,13 +15,7 @@ ControlP5 cp5;
 void setup() {
 	size(800, 600);
 	background(0);
-	//p1 = new Particle(width / 2 - 100, height / 2, 5, 0.1);
-	//p2 = new Particle(width / 2 + 100, height / 2, 5, 0.1);
-	//s = new Spring(p1, p2, 0.1, 150);
 	agents = new ArrayList();
-	//agents.add(p1);
-	//agents.add(p2);
-	//agents.add(s);
 	float sep = (width - 2 * margin) / (n - 1);
 	Particle old = null;
 	for(int i = 0; i < n; i++){
