@@ -5,7 +5,7 @@ ArrayList<IAgent> agents;
 //Particle p2;
 //Spring s;
 float margin = 20;
-float n = 15;
+float n = 30;
 float mass = 2;
 float friction = 0.1;
 float k = 0.2;
@@ -17,6 +17,7 @@ ControlP5 cp5;
 
 void setup() {
 	size(800, 600);
+	//fullScreen(P2D);
 	background(0);
 	//p1 = new Particle(width / 2 - 100, height / 2, 5, 0.1);
 	//p2 = new Particle(width / 2 + 100, height / 2, 5, 0.1);
@@ -30,9 +31,9 @@ void setup() {
 	for(int i = 0; i < n; i++){
 
 		Particle p = new Particle(i * sep + margin, 200, mass, friction);
-		
+
 		agents.add(p);
-		
+
 		if(i == 0 || i == n - 1){
 			p.fix();
 		}
@@ -56,7 +57,7 @@ void draw() {
 		}
 		a.update();
 		a.draw();
-	}	
+	}
 }
 
 void initControls(){
