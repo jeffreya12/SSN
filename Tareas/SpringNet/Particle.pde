@@ -14,7 +14,7 @@ class Particle implements IAgent {
 		acc = new PVector(0, 0);		
 		this.mass = mass;
 		this.friction = friction;
-		c = color(255, 0, 0);
+		c = color(255);
 		fixed = false;
 	}
 

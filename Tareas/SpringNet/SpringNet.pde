@@ -116,6 +116,10 @@ void initControls(){
 		.setRange(0, 1)
 		.setValue(g)
 		.setCaptionLabel("G");
+
+  cp5.addColorPicker("setColor")
+    .setPosition(10, 160)
+    .setCaptionLabel("Color");
 }
 
 void setRestLen(float value){
@@ -148,4 +152,12 @@ void setK(float value){
 	for(Spring s : springs){
 		s.restLength = value;
 	}
+}
+
+void setColor(color value){
+  for(ArrayList<Particle> row : particles){
+    for(Particle p : row){
+      p.c = value;
+    }
+  }
 }
