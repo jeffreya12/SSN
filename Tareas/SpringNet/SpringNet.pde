@@ -2,8 +2,6 @@ import controlP5.*;
 
 ArrayList<ArrayList<Particle>> particles;
 ArrayList<Spring> springs;
-//float margin = 20;
-//float n = 15;
 float mass = 2;
 float friction = 0.1;
 float k = 0.2;
@@ -28,7 +26,12 @@ void setup() {
 			Particle p = new Particle(x, y, mass, friction);
 			particles.get(particles.size() - 1).add(p);
 			int currentPos = particles.get(particles.size() - 1).size() - 1;
-			if(x == sep && y == sep || x == ((int)(width/sep) - 1)*sep && y == sep){
+			if(
+					x == sep && y == sep
+					|| x == ((int)(width/sep) - 1)*sep && y == sep
+					|| x == sep && y == ((int)(height/sep) - 1)*sep
+					|| x == ((int)(width/sep) - 1)*sep && y == ((int)(height/sep) - 1)*sep
+				){
 				p.fix();
 			}
 			if (x > sep){
