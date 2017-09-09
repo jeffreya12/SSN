@@ -54,18 +54,22 @@ void draw() {
 
 	for (ArrayList<Particle> row : particles){
 		for(Particle p : row){
-			if(keyPressed && (keyCode == LEFT)){
-				p.applyForce(new PVector(-1, 0));
+
+			if(keyPressed){
+				if(keyCode == LEFT){
+					p.applyForce(new PVector(-1, 0));
+				}
+				if(keyCode == RIGHT){
+					p.applyForce(new PVector(1, 0));
+				}
+				if(keyCode == UP){
+					p.applyForce(new PVector(0, -1));
+				}
+				if(keyCode == DOWN){
+					p.applyForce(new PVector(0, 1));
+				}
 			}
-			if(keyPressed && (keyCode == RIGHT)){
-				p.applyForce(new PVector(1, 0));
-			}
-			if(keyPressed && (keyCode == UP)){
-				p.applyForce(new PVector(0, -1));
-			}
-			if(keyPressed && (keyCode == DOWN)){
-				p.applyForce(new PVector(0, 1));
-			}
+
 			p.applyForce(gravity);
 			p.update();
 			p.draw();
@@ -107,14 +111,14 @@ void initControls(){
 		.setSize(300, 20)
 		.setRange(0, 1)
 		.setValue(k)
-		.setCaptionLabel("K");
+		.setCaptionLabel("Spring strenght");
 
 	cp5.addSlider("setG")
 		.setPosition(10, 130)
 		.setSize(300, 20)
 		.setRange(0, 1)
 		.setValue(g)
-		.setCaptionLabel("G");
+		.setCaptionLabel("Gravity");
 
   cp5.addColorPicker("setColor")
     .setPosition(10, 160)
@@ -149,7 +153,7 @@ void setG(float value){
 
 void setK(float value){
 	for(Spring s : springs){
-		s.restLength = value;
+		s.k = value;
 	}
 }
 
