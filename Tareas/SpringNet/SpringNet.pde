@@ -13,7 +13,6 @@ int sep = 50;
 ControlP5 cp5;
 
 void setup() {
-	//fullScreen(P2D);
 	size(800, 800, P3D);
 	background(0);
 	Particle old = null;
