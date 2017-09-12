@@ -13,7 +13,7 @@ int sep = 50;
 ControlP5 cp5;
 
 void setup() {
-	size(800, 800, P3D);
+	size(800, 600, P3D);
 	background(0);
 	Particle old = null;
 	particles = new ArrayList();
