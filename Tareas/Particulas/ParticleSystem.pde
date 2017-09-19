@@ -3,10 +3,12 @@ import java.util.Iterator;
 class ParticleSystem {
   PVector origin;
   ArrayList<IAgent> agents;
+  float k;
 
-  ParticleSystem(float x, float y){
+  ParticleSystem(float x, float y, float k){
     origin = new PVector(x, y);
     agents = new ArrayList();
+    this.k = k;
   }
 
   void update() {
@@ -45,7 +47,7 @@ class ParticleSystem {
     p2.applyForce(randomDir());
     agents.add(p1);
     agents.add(p2);
-    Spring s = new Spring(p1, p2, 0.01, 10);
+    Spring s = new Spring(p1, p2, k, 10);
     agents.add(s);
   }
 

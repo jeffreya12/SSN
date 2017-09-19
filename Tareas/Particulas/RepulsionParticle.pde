@@ -7,7 +7,7 @@ class RepulsionParticle extends Particle{
 	}
 
   void update(Particle p){
-		float G = -0.3;
+		float G = -0.1;
     PVector fg = PVector.sub(super.pos, p.pos);
     float d = fg.magSq();
     d = constrain(d, 1, 200);
