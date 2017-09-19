@@ -5,7 +5,7 @@ PVector gravity;
 float g = 0.15;
 ArrayList<Particle> fixedParticles = new ArrayList();
 float particlesFrecuency;
-float k;
+float k = 0.01;
 
 ControlP5 cp5;
 
@@ -13,11 +13,13 @@ void setup(){
   size(800, 600, P3D);
   //fullScreen(P3D);
   background(0);
+
   systems = new ArrayList();
   gravity = new PVector(0, g);
   particlesFrecuency = 5.0;
   //println(particlesFrecuency);
-  k = 0.01;
+  // k = 0.01;
+  // g = 0.15;
 
   for (int i = 0; i < 20; i++){
     if(random(100) < 50){
@@ -27,7 +29,7 @@ void setup(){
     }
   }
 
-  // initControls();
+  //initControls();
 
 }
 
@@ -60,43 +62,42 @@ void draw(){
       s.addParticle();
     }
   }
-
-  //println(particlesFrecuency);
 }
 
 void mousePressed( ) {
   systems.add(new ParticleSystem(mouseX, mouseY, k));
 }
 
-// void initControls(){
-// 	cp5 = new ControlP5(this);
-//
-//   cp5.addSlider("setG")
-// 		.setPosition(10, 130)
-// 		.setSize(300, 20)
-// 		.setRange(0, 1)
-// 		.setValue(g)
-// 		.setCaptionLabel("Gravity");
-//
-//   cp5.addSlider("setK")
-//     .setPosition(10, 100)
-//     .setSize(300, 20)
-//     .setRange(0, 1)
-//     .setValue(k)
-//     .setCaptionLabel("Spring strenght");
-//
-//   cp5.addSlider("setFrecuency")
-//     .setPosition(10, 70)
-//     .setSize(300, 20)
-//     .setRange(10, 60)
-//     .setValue(particlesFrecuency)
-//     .setCaptionLabel("Frecuency of birth");
-// }
-//
-// void setG(float value){
-//   g = value;
-// 	gravity.set(0, g);
-// }
+void initControls(){
+	cp5 = new ControlP5(this);
+
+  cp5.addSlider("setG")
+		.setPosition(10, 10)
+		.setSize(300, 20)
+		.setRange(0, 1)
+		.setValue(g)
+		.setCaptionLabel("Gravity");
+
+  // cp5.addSlider("setK")
+  //   .setPosition(10, 100)
+  //   .setSize(300, 20)
+  //   .setRange(0, 1)
+  //   .setValue(k)
+  //   .setCaptionLabel("Spring strenght");
+  //
+  cp5.addSlider("setFrecuency")
+    .setPosition(10, 70)
+    .setSize(300, 20)
+    .setRange(10, 60)
+    .setValue(particlesFrecuency)
+    .setCaptionLabel("Frecuency of birth");
+}
+
+void setG(float value){
+  g = value;
+	gravity.set(0, g);
+}
+
 //
 // void setK(float value){
 //   k = value;
@@ -110,6 +111,6 @@ void mousePressed( ) {
 // 	}
 // }
 //
-// void setFrecuency(float value){
-//   particlesFrecuency = value;
-// }
+void setFrecuency(float value){
+  particlesFrecuency = value;
+}
