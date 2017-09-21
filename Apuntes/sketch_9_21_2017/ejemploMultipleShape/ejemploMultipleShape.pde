@@ -11,6 +11,7 @@ void setup() {
   fullScreen();
   box2dInit();
 }
+
 void box2dInit() {
   box2d = new Box2DProcessing(this);
   box2d.createWorld();
@@ -18,6 +19,7 @@ void box2dInit() {
   polygons = new ArrayList();
   surface = new Surface();
 }
+
 void draw() {
   background(0);
   box2d.step();

@@ -18,12 +18,6 @@ class PolygonParticle {
     c = color(random(255), random(255), random(255));
   }
   void makeBody(float x, float y) {
-    BodyDef bd = new BodyDef();
-    bd.setPosition(box2d.coordPixelsToWorld(x, y));
-    bd.setType(BodyType.DYNAMIC);
-    bd.setAngle(random(PI));
-    body = box2d.createBody(bd);
-
     PolygonShape ps = new PolygonShape();
     Vec2[] worldVertices = new Vec2[vertices.size()];
     for (int i = 0; i < vertices.size(); i++) {
@@ -36,7 +30,11 @@ class PolygonParticle {
     fd.setDensity(1);
     fd.setRestitution(0.7);
     fd.setFriction(0);
-
+    BodyDef bd = new BodyDef();
+    bd.setPosition(box2d.coordPixelsToWorld(x, y));
+    bd.setType(BodyType.DYNAMIC);
+    bd.setAngle(random(PI));
+    body = box2d.createBody(bd);
     body.createFixture(fd);
     body.setLinearVelocity(new Vec2(random(-5, 5), random(2, 5)));
     body.setAngularVelocity(random(-5, 5));
