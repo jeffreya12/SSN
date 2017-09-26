@@ -4,7 +4,7 @@ import org.jbox2d.collision.shapes.*;
 import org.jbox2d.common.*;
 
 Box2DProcessing box2d;
-ArrayList<Particle> particles;
+ArrayList<Carro> carros;
 
 Surface surface;
 
@@ -16,7 +16,7 @@ void setup() {
 void box2dInit() {
   box2d = new Box2DProcessing(this); ///inicializamos
   box2d.createWorld();
-  particles = new ArrayList();
+  carros = new ArrayList();
   surface = new Surface();
 }
 
@@ -25,20 +25,20 @@ void draw() {
 
   if(mousePressed){
     float size = random(10, 20);
-    particles.add(new Particle(mouseX, mouseY, size));
+    carros.add(new Carro(mouseX, mouseY, size));
   }
 
   box2d.step();
   surface.display();
 
-  for(Particle p : particles) {
-    p.display();
+  for(Carro c : carros) {
+    c.display();
   }
 
-  for(int i = particles.size() - 1; i >= 0; i--) {
-    Particle p = particles.get(i);
-    if(p.done()) {
-      particles.remove(i);
+  for(int i = carros.size() - 1; i >= 0; i--) {
+    Carro c = carros.get(i);
+    if(c.done()) {
+      carros.remove(i);
     }
   }
 }
