@@ -1,7 +1,7 @@
 class Particle {
   Body body;
   float r;
-
+  
   Particle() {}
   Particle(float x, float y, float r) {
     this.r = r;
@@ -12,18 +12,18 @@ class Particle {
     bd.position = box2d.coordPixelsToWorld(x, y);
     bd.type = BodyType.DYNAMIC;
     body = box2d.world.createBody(bd);
-
+    
     CircleShape cs = new CircleShape();
     cs.setRadius(box2d.scalarPixelsToWorld(r));
-
+    
     FixtureDef fd = new FixtureDef();
     fd.setShape(cs);
     fd.setDensity(1);
-    fd.setFriction(0.01);
-    fd.setRestitution(0.8);
-
+    fd.setFriction(0.1);
+    fd.setRestitution(0.3);
+    
     body.createFixture(fd);
-
+    
     body.setLinearVelocity(new Vec2(random(-10, 10), random(0, 10)));
     body.setAngularVelocity(random(-10, 10));
   }
