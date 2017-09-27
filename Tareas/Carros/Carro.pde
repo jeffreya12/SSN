@@ -1,60 +1,47 @@
 class Carro {
-  Body body;
-  float r;
+  Particle p1;
+  Particle p2;
+  Box base;
+  Joint joint1;
+  Joint joint2;
+  float w = 10;
+  float h = 50;
 
-  Carro(float x, float y, float r) {
-    this.r = r;
-    makeBody(x, y);
-  }
+  Carro(float x, float y) {
 
-  void makeBody(float x, float y) {
-    BodyDef bd = new BodyDef();
-    bd.position.set(box2d.coordPixelsToWorld(x, y));
-    bd.type = BodyType.DYNAMIC;
-    body = box2d.createBody(bd);
+    base = new Box(x, y - h/2, w, h);
+    p1 = new Particle(mouseX, mouseY - h, random(10, 20));
+    p2 = new Particle(mouseX, mouseY, random(10, 20));
 
-    CircleShape cs = new CircleShape();
-    cs.setRadius(box2d.scalarPixelsToWorld(r));
+    RevoluteJointDef rjd = new RevoluteJointDef();
+    rjd.initialize(base.body, p1.body, p1.body.getTransform().p);
+    rjd.motorSpeed = PI * random(1, 5);
+    rjd.maxMotorTorque = random(50000000);
+    rjd.enableMotor = true;
 
+    RevoluteJointDef rjd2 = new RevoluteJointDef();
+    rjd2.initialize(base.body, p2.body, p2.body.getTransform().p);
+    rjd2.motorSpeed = PI * random(1, 5);
+    rjd2.maxMotorTorque = random(50000000);
+    rjd2.enableMotor = true;
 
-    FixtureDef fd = new FixtureDef();
-    fd.setShape(cs);
-    fd.setDensity(1);
-    fd.setFriction(0.01);
-    fd.setRestitution(0.8);
-
-    body.createFixture(fd);
-
-    body.setLinearVelocity( new Vec2(random(-10, 10), random(0, 10) ) );
-    body.setAngularVelocity(random(-10, 10));
-  }
-
-
-  void killBody() {
-    box2d.destroyBody(body);
-  }
-
-  boolean done() {
-    Vec2 pos = box2d.getBodyPixelCoord(body);
-    if(pos.y > height * 2) {
-      killBody();
-     return true;
-    }
-    return false;
+    joint1 = box2d.world.createJoint(rjd);
+    joint2 = box2d.world.createJoint(rjd2);
   }
 
   void display() {
-    Vec2 pos = box2d.getBodyPixelCoord(body);
-    float a = body.getAngle();
-    pushMatrix();
-    translate(pos.x, pos.y);
-    rotate(-a);
-    fill(#FF0062);
-    stroke(255);
-    strokeWeight(2);
-    ellipse(0, 0, r * 2, r * 2);
-    line(-r, 0, r, 0);
-    line(0, -r, 0, r);
-    popMatrix();
+    base.display();
+    p1.display();
+    p2.display();
   }
+
+  boolean done(){
+    if (p1.done() || p2.done()){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
 }

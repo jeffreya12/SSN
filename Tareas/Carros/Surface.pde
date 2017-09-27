@@ -8,17 +8,15 @@ class Surface {
 
   void makeBody() {
     BodyDef bd = new BodyDef();
-    bd.position.set(0,0);   //la superficie no necesita posicion
-    Body body = box2d.createBody(bd);   //no es necesario guardar la referencia al body
-
-
+    bd.position.set(0,0);
+    Body body = box2d.createBody(bd);
 
     float offset = random(100);
 
     for(float x = 0; x < width; x +=5) {
-      float y = noise(offset) * 200 + height / 3 + x * 0.4;
+      float y = noise(offset) * 200 + height / 5 + x * 0.4;
       points.add(new Vec2(x,y));
-      offset += 0.05;
+      offset += 0.03;
     }
 
     float lastYPos = points.get(points.size() - 1 ).y;
