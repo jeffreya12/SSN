@@ -20,8 +20,8 @@ class Particle {
     FixtureDef fd = new FixtureDef();
     fd.setShape(cs);
     fd.setDensity(1);
-    fd.setFriction(0.01);
-    fd.setRestitution(0.8);
+    fd.setFriction(10);
+    fd.setRestitution(0.01);
 
     body.createFixture(fd);
 
