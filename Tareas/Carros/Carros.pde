@@ -11,7 +11,7 @@ ArrayList<Carro> carros;
 Surface surface;
 
 void setup() {
-  fullScreen();
+  fullScreen(P2D);
   box2dInit();
 }
 
