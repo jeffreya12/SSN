@@ -19,7 +19,7 @@ class Vehicle {
     r = mass * 5;
     maxSpeed = random(3, 5);
     maxForce = random(0.04, 0.1);
-    c = color(128, 58, 250);
+    c = color(random(255), random(255), random(255), 200);
     arrivalRadius = 200;
     wrapBorders = true;
   }
@@ -51,8 +51,7 @@ class Vehicle {
   }
   void display() {
     float ang = vel.heading();
-    stroke(255);
-    strokeWeight(2);
+    noStroke();
     fill(c);
     pushMatrix();
     translate(pos.x, pos.y);

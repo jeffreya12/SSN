@@ -7,6 +7,7 @@ class FlowField {
   float defaultMag = 5;
   float timeOff;
   float timeOffAmount;
+  float strokeColor;
 
   FlowField(float resolution, float noiseOffset, float defaultMag) {
     this.resolution = resolution;
@@ -14,6 +15,7 @@ class FlowField {
     this.defaultMag = defaultMag;
     rows = (int)(height / resolution);
     columns = (int)(width / resolution);
+    strokeColor = 128;
 
     timeOff = random(100);
     timeOffAmount = 0.01;
@@ -41,7 +43,7 @@ class FlowField {
         grid[r][c].setMag(defaultMag);
       }
     }
-    timeOff += timeOffAmount;
+    timeOff += -timeOffAmount;
   }
 
   void display() {
@@ -56,7 +58,7 @@ class FlowField {
     v.setMag(resolution / 2);
     pushMatrix();
     translate(x + resolution/2, y + resolution/2);
-    stroke(128);
+    stroke(strokeColor);
     line(0, 0, v.x, v.y);
     popMatrix();
   }
