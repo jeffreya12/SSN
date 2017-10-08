@@ -8,6 +8,7 @@ class FlowField {
   float timeOff;
   float timeOffAmount;
   float strokeColor;
+  float angleAmount;
 
   FlowField(float resolution, float noiseOffset, float defaultMag) {
     this.resolution = resolution;
@@ -19,6 +20,8 @@ class FlowField {
 
     timeOff = random(100);
     timeOffAmount = 0.01;
+
+    angleAmount = 0.01;
 
     initGrid();
     update();
@@ -38,12 +41,13 @@ class FlowField {
       for (int c = 0; c < columns; c++) {
         float a1 = (float) r * 0.1;
         float a2 = (float) c * 0.1;
-        float angle = map(noise(a1, a2, timeOff), 0, 1, 0, TWO_PI);
+        float angle = map(noise(a1, a2, timeOff), 0, 1, 0, TWO_PI) + angleAmount;
         grid[r][c] = PVector.fromAngle(angle);
         grid[r][c].setMag(defaultMag);
       }
     }
-    timeOff += -timeOffAmount;
+    timeOff += timeOffAmount;
+    angleAmount += 0.01;
   }
 
   void display() {
