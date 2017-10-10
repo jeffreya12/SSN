@@ -4,7 +4,6 @@ boolean displayField;
 
 void setup() {
   size(800, 600, P2D);
-  //fullScreen(P2D);
   background(0);
   field = new FlowField(25, 0.5, 0.1);
   vehicles = new ArrayList();
@@ -39,12 +38,10 @@ void draw() {
 }
 
 void keyPressed(){
-  if (keyCode == 's' || keyCode == 'S') {
-    if(displayField){
-      displayField = false;
-    }
-    else{
-      displayField = true;
-    }
+  if(displayField){
+    displayField = false;
+  }
+  else{
+    displayField = true;
   }
 }

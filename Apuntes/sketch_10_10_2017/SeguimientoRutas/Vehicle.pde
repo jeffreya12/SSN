@@ -6,6 +6,8 @@ class Vehicle {
   float maxSpeed;
   float maxForce;
   float arrivalRadius;
+  float lookAhead;
+  boolean debug;
 
   float r;
   color c;
@@ -17,11 +19,13 @@ class Vehicle {
     acc = new PVector(0, 0);
     mass = random(1.5, 2.5);
     r = mass * 5;
-    maxSpeed = random(3, 5);
-    maxForce = random(0.04, 0.1);
-    c = color(random(255), random(255), random(255), 200);
+    maxSpeed = 3;
+    maxForce = 0.2;
+    lookAhead = 50;
+    c = color(255, 180, 0);
     arrivalRadius = 200;
     wrapBorders = true;
+    debug = true;
   }
   void update() {
     vel.add(acc);
@@ -72,4 +76,37 @@ class Vehicle {
       pos.y = (pos.y + height) % height;
     }
   }
+
+  void follow(Path path){
+    PVector predictedPos = getPredictedPos();
+    PVector normalPos = getNormalPos(predictedPos, path);
+    float distance = PVector.dist(predictedPos, normalPos);
+    if(distance > path.radius){
+      seek(normalPos);
+    }
+    if(debug){
+      noStroke();
+      fill(0, 0, 255);
+      ellipse(predictedPos.x, predictedPos.y, 5, 5);
+      fill(255, 0, 0);
+      ellipse(normalPos.x, normalPos.y, 5, 5);
+    }
+  }
+
+  PVector getPredictedPos(){
+    PVector predicted = vel.copy();
+    predicted.setMag(lookAhead);
+    predicted.add(pos);
+    return predicted;
+  }
+
+  PVector getNormalPos(PVector pos, Path path){
+    PVector a = PVector.sub(pos, path.start);
+    PVector b = PVector.sub(path.end, path.start);
+    b.normalize();
+    b.mult(a.dot(b));
+    b.add(path.start);
+    return b;
+  }
+
 }
