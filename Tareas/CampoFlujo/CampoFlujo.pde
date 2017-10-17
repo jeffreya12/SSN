@@ -38,10 +38,5 @@ void draw() {
 }
 
 void keyPressed(){
-  if(displayField){
-    displayField = false;
-  }
-  else{
-    displayField = true;
-  }
+  displayField = !displayField;
 }
