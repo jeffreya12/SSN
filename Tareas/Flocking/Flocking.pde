@@ -16,8 +16,8 @@ void draw() {
     background(0);
     p.display();
     for (Vehicle v : vehicles) {
-      v.follow(p);
       v.flock(vehicles);
+      v.follow(p);      
       v.update();
       v.borders();
       v.display();

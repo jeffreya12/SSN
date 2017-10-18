@@ -10,7 +10,6 @@ class Vehicle {
   float lookAhead = 50;
   float pathLookAhead = 0;
   color c;
-  boolean debug = false;
   float alignmentDistance;
   float alignmentRatio;
   float separationDistance;
@@ -24,7 +23,7 @@ class Vehicle {
     acc = new PVector(0, 0);
     this.maxSpeed = maxSpeed;
     this.maxForce = maxForce;
-    separationDistance = 70;
+    separationDistance = 200;
     separationRatio = 1;
     alignmentDistance = 40;
     alignmentRatio = 1;
@@ -136,13 +135,6 @@ class Vehicle {
     float distance = PVector.dist(predicted, normal);
     if (distance > path.radius) {
       seek(normal);
-    }
-    if (debug) {
-      noStroke();
-      fill(0, 0, 255);
-      ellipse(predicted.x, predicted.y, 5, 5);
-      fill(255, 0, 0);
-      ellipse(normal.x, normal.y, 5, 5);
     }
   }
   PVector getPredictedPos() {
