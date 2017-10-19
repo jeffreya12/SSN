@@ -5,7 +5,8 @@ boolean pause = false;
 boolean save = false;
 
 void setup() {
-  fullScreen(P2D);
+  size(800, 600);
+  //fullScreen(P2D);
   vehicles = new ArrayList();
   p = new Path();
   background(0);
@@ -17,7 +18,7 @@ void draw() {
     p.display();
     for (Vehicle v : vehicles) {
       v.flock(vehicles);
-      v.follow(p);      
+      v.follow(p);
       v.update();
       v.borders();
       v.display();
@@ -27,7 +28,7 @@ void draw() {
     if (settingPoints) {
       p.addPoint(mouseX, mouseY);
     } else {
-      float maxSpeed = 5;
+      float maxSpeed = 3;
       Vehicle v = new Vehicle(mouseX, mouseY, PVector.random2D().mult(maxSpeed), maxSpeed, 0.5);
       vehicles.add(v);
     }

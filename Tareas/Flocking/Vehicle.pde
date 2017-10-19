@@ -23,11 +23,11 @@ class Vehicle {
     acc = new PVector(0, 0);
     this.maxSpeed = maxSpeed;
     this.maxForce = maxForce;
-    separationDistance = 200;
+    separationDistance = 70;
     separationRatio = 1;
-    alignmentDistance = 40;
+    alignmentDistance = 70;
     alignmentRatio = 1;
-    cohesionDistance = 40;
+    cohesionDistance = 70;
     cohesionRatio = 1;
     c = color(random(100, 255), 58, random(0, 255));
   }
@@ -53,15 +53,16 @@ class Vehicle {
     stroke(255);
     strokeWeight(1);
     fill(c);
-    pushMatrix();
-    translate(pos.x, pos.y);
-    rotate(ang);
-    beginShape();
-    vertex(r * 3, 0);
-    vertex(0, -r);
-    vertex(0, r);
-    endShape(CLOSE);
-    popMatrix();
+    // pushMatrix();
+    // translate(pos.x, pos.y);
+    // rotate(ang);
+    // beginShape();
+    // vertex(r * 3, 0);
+    // vertex(0, -r);
+    // vertex(0, r);
+    // endShape(CLOSE);
+    // popMatrix();
+    ellipse(pos.x, pos.y, r, r);
   }
   void borders() {
     pos.x = (pos.x + width) % width;
