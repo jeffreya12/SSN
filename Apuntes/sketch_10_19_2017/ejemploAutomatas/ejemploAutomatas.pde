@@ -2,7 +2,7 @@ Automaton a;
 
 void setup() {
   fullScreen();
-  a = new Conway(10);
+  a = new Brian(5);
 }
 void draw() {
   background(0);

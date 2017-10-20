@@ -2,11 +2,9 @@ ArrayList<Vehicle> vehicles;
 Path p;
 boolean settingPoints = true;
 boolean pause = false;
-boolean save = false;
 
 void setup() {
-  size(800, 600);
-  //fullScreen(P2D);
+  size(800, 600, P2D);
   vehicles = new ArrayList();
   p = new Path();
   background(0);
@@ -33,9 +31,6 @@ void draw() {
       vehicles.add(v);
     }
   }
-  if (save) {
-    saveFrame("img\\####.png");
-  }
 }
 void keyPressed() {
   if (key == '\n') {
@@ -43,8 +38,5 @@ void keyPressed() {
   }
   if (key == 'p') {
     pause = !pause;
-  }
-  if (key == 'g') {
-    save = !save;
   }
 }

@@ -7,7 +7,7 @@ class Vehicle {
   float maxSpeed;
   float maxForce;
   float maxPathDistance = 200;
-  float lookAhead = 50;
+  float lookAhead = 45;
   float pathLookAhead = 0;
   color c;
   float alignmentDistance;
@@ -24,12 +24,12 @@ class Vehicle {
     this.maxSpeed = maxSpeed;
     this.maxForce = maxForce;
     separationDistance = 70;
-    separationRatio = 1;
-    alignmentDistance = 70;
+    separationRatio = 0.2;
+    alignmentDistance = 30;
     alignmentRatio = 1;
     cohesionDistance = 70;
-    cohesionRatio = 1;
-    c = color(random(100, 255), 58, random(0, 255));
+    cohesionRatio = 0.05;
+    c = color(random(255), random(255), random(255));
   }
   void update() {
     vel.add(acc);
@@ -50,25 +50,15 @@ class Vehicle {
   }
   void display() {
     float ang = vel.heading();
-    stroke(255);
+    noStroke();
     strokeWeight(1);
     fill(c);
-    // pushMatrix();
-    // translate(pos.x, pos.y);
-    // rotate(ang);
-    // beginShape();
-    // vertex(r * 3, 0);
-    // vertex(0, -r);
-    // vertex(0, r);
-    // endShape(CLOSE);
-    // popMatrix();
     ellipse(pos.x, pos.y, r, r);
   }
   void borders() {
     pos.x = (pos.x + width) % width;
     pos.y = (pos.y + height) % height;
   }
-
   void align(ArrayList<Vehicle> vehicles) {
     PVector average = new PVector(0, 0);
     int count = 0;
@@ -129,7 +119,6 @@ class Vehicle {
     align(vehicles);
     cohere(vehicles);
   }
-
   void follow(Path path) {
     PVector predicted = getPredictedPos();
     PVector normal = getClosestNormalPoint(path, predicted);
@@ -173,7 +162,7 @@ class Vehicle {
     }
     return normalPoints;
   }
-  // si no hay puntos normales válidos, retorna la predicción
+
   PVector getClosest(ArrayList<PVector> normalPoints, PVector predicted) {
     if (normalPoints.size() == 0) {
       return predicted;
