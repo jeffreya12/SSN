@@ -1,4 +1,4 @@
-Flyer fulano;
+//Flyer fulano;
 float g = 1;
 PVector gravity;
 Flock flock;
