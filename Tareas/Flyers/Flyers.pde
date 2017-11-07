@@ -40,6 +40,7 @@ void draw(){
   if(flock.allDead()){
     flock.next();
   }
+  println(flock.selection.factory.mutationRate);
 }
 
 void mousePressed(){
@@ -85,6 +86,7 @@ void initControls(){
 
 void setMutationRate(float value){
 	MUTATION_RATE = value;
+  flock.selection.factory.mutationRate = MUTATION_RATE;
 }
 
 void setFlockSize(int value){

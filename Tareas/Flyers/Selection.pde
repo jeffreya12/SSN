@@ -18,7 +18,6 @@ class Selection {
 
   ArrayList<Flyer> nextGeneration(){
     ArrayList<Flyer> next = new ArrayList();
-    factory.mutationRate = MUTATION_RATE;
     while(next.size()< FLOCK_SIZE){
       FlyerDNA parent1 = select();
       FlyerDNA parent2 = select();
