@@ -3,7 +3,6 @@ import controlP5.*;
 float g = 1;
 PVector gravity;
 Flock flock;
-int cantidadObstaculos = 10;
 ArrayList<PVector> obstaculos;
 int tamanoObstaculos = 20;
 
@@ -24,10 +23,6 @@ void setup(){
   flock = new Flock(origin, target, gravity, FLOCK_SIZE);
   obstaculos = new ArrayList();
 
-  for (int i = 0; i < cantidadObstaculos; i++){
-    obstaculos.add(new PVector(random(tamanoObstaculos, width - tamanoObstaculos), random(tamanoObstaculos, height - tamanoObstaculos)));
-  }
-
   initControls();
 
 }
@@ -40,12 +35,16 @@ void draw(){
   if(flock.allDead()){
     flock.next();
   }
-  println(flock.selection.factory.mutationRate);
 }
 
 void mousePressed(){
-  if(mouseButton == RIGHT){
-    flock.target = new PVector(mouseX, mouseY);
+  if(!(mouseX < 300 && mouseY < 60)){
+    if(mouseButton == LEFT){
+      flock.target = new PVector(mouseX, mouseY);
+    }
+    else if(mouseButton == RIGHT){
+      obstaculos.add(new PVector(mouseX, mouseY));
+    }
   }
 }
 
